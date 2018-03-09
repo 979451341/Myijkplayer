@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#c99f9e9e">
+
+
+    <Button
+        android:id="@+id/btn_play"
+        android:text="@string/pause"
+        android:layout_margin="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:text="00:00/00:00"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/btn_play"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"  />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_time"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/btn_stop"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:text="@string/stop"
+        android:layout_margin="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

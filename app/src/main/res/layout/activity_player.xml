@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+    <com.example.zth.two.VideoPlayerIJK
+        android:id="@+id/ijk_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_play_end"
+        android:visibility="invisible"
+        android:text="播放结束"
+        android:textColor="#ddd"
+        android:textSize="30dp"
+        android:background="#030303"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <include
+        android:id="@+id/include_play_top"
+        layout="@layout/include_play_top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <include
+        android:id="@+id/include_play_bottom"
+        layout="@layout/include_play_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#de262a3b">
+
+        <TextView
+            android:id="@+id/tv_load_msg"
+            android:text="正在加载"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pb_loading"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="6dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="60dp"
+            android:indeterminate="false"
+            android:indeterminateDrawable="@drawable/video_loading"
+            android:padding="5dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
