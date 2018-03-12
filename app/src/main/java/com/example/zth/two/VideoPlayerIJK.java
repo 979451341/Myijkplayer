@@ -11,9 +11,11 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -32,6 +34,7 @@ public class VideoPlayerIJK extends FrameLayout {
      */
     private IMediaPlayer mMediaPlayer = null;
 
+    private boolean init = false;
     /**
      * 视频文件地址
      */
@@ -107,7 +110,13 @@ public class VideoPlayerIJK extends FrameLayout {
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             //surfaceview创建成功后，加载视频
-            load();
+            if(init == false){
+                load();
+                init = true;
+            }
+
+
+
         }
 
         @Override
@@ -147,6 +156,8 @@ public class VideoPlayerIJK extends FrameLayout {
 //        //开启硬解码
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
 
+
+
         mMediaPlayer = ijkMediaPlayer;
 
         if (listener != null) {
@@ -156,6 +167,10 @@ public class VideoPlayerIJK extends FrameLayout {
             mMediaPlayer.setOnBufferingUpdateListener(listener);
             mMediaPlayer.setOnErrorListener(listener);
         }
+
+
+
+
     }
 
     public void setListener(VideoPlayerListener listener) {
@@ -233,5 +248,7 @@ public class VideoPlayerIJK extends FrameLayout {
         }
         return false;
     }
+
+    
 
 }

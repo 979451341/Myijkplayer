@@ -1,12 +1,18 @@
 package com.example.zth.two;
 
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -14,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -48,6 +55,8 @@ public class PlayerActivity extends AppCompatActivity {
     RelativeLayout rlLoading;
     @BindView(R.id.tv_play_end)
     TextView tvPlayEnd;
+    @BindView(R.id.rl_player)
+    RelativeLayout rlPlayer;
     private String path;
     private boolean start = false;
     private Handler handler;
@@ -59,6 +68,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     private RelativeLayout rl_bottom, rl_top;
     private boolean menu_visible = true;
+    private boolean orientation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -275,13 +285,51 @@ public class PlayerActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.btn_setting:
+
+                if(orientation == false){
+                    ijkPlayer.pause();
+                    orientation = true;
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+                    WindowManager wm = (WindowManager) this
+                            .getSystemService(Context.WINDOW_SERVICE);
+                    float width = wm.getDefaultDisplay().getWidth();
+                    float height = wm.getDefaultDisplay().getHeight();
+                    float ratio = width/height;
+
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rlPlayer.getLayoutParams();
+                    layoutParams.height = (int)(width*ratio);
+                    layoutParams.width = (int)width;
+                    rlPlayer.setLayoutParams(layoutParams);
+                    btnSetting.setText(getResources().getString(R.string.fullScreek));
+                    ijkPlayer.start();
+                }else {
+                    ijkPlayer.pause();
+                    orientation = false;
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+                    WindowManager wm = (WindowManager) this
+                            .getSystemService(Context.WINDOW_SERVICE);
+                    float width = wm.getDefaultDisplay().getWidth();
+                    float height = wm.getDefaultDisplay().getHeight();
+                    float ratio = width/height;
+
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rlPlayer.getLayoutParams();
+
+                    layoutParams.height = (int) RelativeLayout.LayoutParams.MATCH_PARENT;
+                    layoutParams.width = (int)RelativeLayout.LayoutParams.MATCH_PARENT;
+                    rlPlayer.setLayoutParams(layoutParams);
+                    btnSetting.setText(getResources().getString(R.string.smallScreen));
+                    ijkPlayer.start();
+                }
+
                 break;
             case R.id.btn_play:
                 if (btnPlay.getText().toString().equals(getResources().getString(R.string.pause))) {
                     ijkPlayer.pause();
                     btnPlay.setText(getResources().getString(R.string.media_play));
                 } else {
-                    if(tvPlayEnd.getVisibility() == View.VISIBLE){
+                    if (tvPlayEnd.getVisibility() == View.VISIBLE) {
                         ijkPlayer.setVideoPath(path);
                     }
                     ijkPlayer.start();
@@ -300,7 +348,6 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
 
-
     private void refresh() {
         long current = ijkPlayer.getCurrentPosition() / 1000;
         long duration = ijkPlayer.getDuration() / 1000;
@@ -316,6 +363,8 @@ public class PlayerActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     private void setVisible(int state) {
         btnPlay.setVisibility(state);

@@ -7,8 +7,8 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:text="返回"
-        android:layout_margin="5dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/back"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
@@ -16,8 +16,8 @@
 
     <Button
         android:id="@+id/btn_setting"
-        android:text="@string/setting"
-        android:layout_margin="5dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/smallScreen"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"

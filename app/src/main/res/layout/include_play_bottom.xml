@@ -7,8 +7,8 @@
 
     <Button
         android:id="@+id/btn_play"
+        style="?android:attr/borderlessButtonStyle"
         android:text="@string/pause"
-        android:layout_margin="5dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
@@ -19,15 +19,12 @@
         android:text="00:00/00:00"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/btn_play"
-        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"  />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/tv_time"
-        android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/btn_stop"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
@@ -36,9 +33,9 @@
 
 
     <Button
+        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/btn_stop"
         android:text="@string/stop"
-        android:layout_margin="5dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"

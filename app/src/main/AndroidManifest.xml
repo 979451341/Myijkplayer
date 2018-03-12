@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"></activity>
     </application>
 
